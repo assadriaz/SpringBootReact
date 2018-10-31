@@ -13,3 +13,6 @@ Launch by typing: mvnw spring-boot:run
 ##Screenshot##
 
 ![Screenshot](http://juhahinkula.github.com/img/springreact.png)
+
+
+# Core dependency changed test
