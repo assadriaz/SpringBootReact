@@ -31,11 +31,7 @@ workflows:
   build_test_deploy:
     jobs:
     - build:
-        context: org-carbon
-    - deploy-docker:
-        context: org-carbon
-        requires:
-        - build
+        context: demo
         filters:
           branches:
             only: master
