@@ -2,3 +2,13 @@
 *.project
 target/
 !.mvn/wrapper/maven-wrapper.jar
+/.idea/
+/.mvn/
+.idea/SpringBootReact.iml
+.idea/checkstyle-idea.xml
+.idea/codeStyles/
+.idea/dbnavigator.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+/.classpath
