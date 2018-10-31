@@ -15,4 +15,4 @@ Launch by typing: mvnw spring-boot:run
 ![Screenshot](http://juhahinkula.github.com/img/springreact.png)
 
 
-# Core dependency changed test not any more
+# Core dependency changed test not 
