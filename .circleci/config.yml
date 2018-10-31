@@ -39,12 +39,11 @@ jobs:
           repo_name_hash=$repo_name"("$git_hash")"
           if [[ "$last_msg" == "CCI:"* ]]; then
               git_msg= echo $last_msg "->" $repo_name_hash
-
+              git commit --allow-empty -m "`$git_msg`"
           else
               git_msg= echo "CCI:"$repo_name_hash
-
+              git commit --allow-empty -m "`$git_msg`"
           fi
-          git commit --allow-empty -m "`$git_msg`"
           # Push quietly to prevent showing the token in log
           git push -q https://${DEMO_GITHUB_TOKEN}@github.com/assadriaz/demo.git master
 
