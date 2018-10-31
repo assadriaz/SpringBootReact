@@ -1,11 +1,4 @@
 version: 2
-aliases:
-- &post-hook
-  name: Notify about build and docker image pushed
-  command: |
-    echo 'export CIRCLE_PROJECT_REPONAME="$CIRCLE_PROJECT_REPONAME"' >> $BASH_ENV
-    echo 'export CIRCLE_SHA1="$CIRCLE_SHA1"' >> $BASH_ENV
-    echo 'export BUILD_STATUS_API_KEY="$BUILD_STATUS_API_KEY"' >> $BASH_ENV
 jobs:
   build:
     docker:
@@ -24,7 +17,24 @@ jobs:
         path: target/surefire-reports
     - store_artifacts:
         path: ~/junit
-    - run: *post-hook
+  trigger-depndents:
+    machine: true
+      steps:
+      - run:
+          name: Clone docs
+          working_directory: ~/workdir
+          command: |
+            git clone --depth 1 https://github.com/assadriaz/demo.git
+      - deploy:
+          name: Trigger demo deployment
+          working_directory: ~/workdir/demo
+          command: |
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "<email>"
+            git config user.name "CricleCI Bot"
+            git commit --allow-empty -m "CricleCI: Updated dependency SpringBootReact "
+            # Push quietly to prevent showing the token in log
+            git push -q https://${DEMO_GITHUB_TOKEN}@github.com/assadriaz/demo.git master
 
 workflows:
   version: 2
@@ -35,3 +45,7 @@ workflows:
         filters:
           branches:
             only: master
+    - trigger-dependants:
+        contex: demo
+        requires:
+          - build
