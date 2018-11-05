@@ -1,4 +1,4 @@
-# SpringBootReact
+# SpringBootReact V.10
 Spring Boot + React.js
 
 Simple CRUD application with Spring Boot Data REST backend and React.js frontend. Application uses H2 runtime database and contains demodata.
