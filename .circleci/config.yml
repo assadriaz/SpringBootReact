@@ -7,12 +7,12 @@ jobs:
     - checkout
     - restore_cache:
         key: dep-cache-{{ checksum "pom.xml" }}
-    - run: mvn dependency:go-offline
+    - run: mvn dependency:go-offline -s ./.circleci/settings.xml
     - save_cache:
         paths:
         - ~/.m2
         key: dep-cache-{{ checksum "pom.xml" }}
-    - run: mvn package -DskipTests
+    - run: mvn deploy -DskipTests
     - store_test_results:
         path: target/surefire-reports
     - store_artifacts:
